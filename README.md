@@ -1,58 +1,72 @@
-# Salesforce DX Project
+# WhatNext Vision Motors
+### Shaping the Future of Mobility with Innovation and Excellence
 
-Salesforce DX is a development approach that brings source-driven development, team collaboration, and continuous integration to the Salesforce Platform. Instead of working directly in an org through a web browser, you work with metadata as source files in a local DX project, track changes in version control, and deploy through automated processes.
+## Project Overview
+WhatNext Vision Motors is a Salesforce CRM application developed to manage vehicle inventory, dealers, customers, vehicle orders, test drives, and service requests. It uses Salesforce automation to simplify order processing, customer communication, and service management.
 
-This project template gets you started with the tools and structure you need to build Salesforce applications using source control, scratch orgs, and the Salesforce CLI.
+## Objectives
+- Maintain vehicle, dealer, and customer records.
+- Manage vehicle orders and validate stock availability.
+- Automatically process eligible pending orders using Batch Apex.
+- Send email reminders for scheduled test drives.
+- Notify dealers when customers submit service requests.
+- Update service request status after dealer confirmation.
+- Generate reports and dashboards for vehicle inventory monitoring.
 
-## Prerequisites
+## Technologies Used
+- Salesforce Developer Edition
+- Salesforce Flow Builder
+- Apex Classes and Triggers
+- Batch Apex and Scheduled Apex
+- Custom Objects and Lookup Relationships
+- Salesforce Reports and Dashboards
 
-Before you start, make sure you have:
+## Modules Implemented
 
-- **Salesforce CLI** - Download from [developer.salesforce.com/tools/salesforcecli](https://developer.salesforce.com/tools/salesforcecli). See [Install Salesforce CLI](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm) for details.
-- **VS Code with Salesforce Extension Pack** - See [Installation Instructions](https://developer.salesforce.com/docs/platform/sfvscode-extensions/guide/install.html) for details. Includes the Agentforce Vibes extension.
-- **A development org** - Sign up for a free Developer Edition org [here](https://developer.salesforce.com/signup).
-- **Dev Hub enabled** (optional, required to create scratch orgs) - You can enable Dev Hub in your development org under Setup > Dev Hub.  See [Provide Developers Access to Salesforce DX Tools](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_setup_dx_tools.htm).
+### 1. Vehicle Management
+Maintains vehicle details, models, stock quantities, prices, dealers, and availability status.
 
-## Project Structure
+### 2. Dealer Management
+Stores dealer information, including location, phone number, and email address.
 
-Your DX project follows this structure:
+### 3. Customer Management
+Maintains customer details and supports their vehicle orders, test drives, and service requests.
 
-- **`force-app/main/default/`** - Your metadata source files live in this default package directory. You can configure additional package directories in the `sfdx-project.json` file.
-- **`config/`** - Scratch org definitions and project settings
-- **`scripts/`** - Automation scripts for common tasks
-- **`sfdx-project.json`** - Project manifest that defines package directories, namespace, API version, and other project-level settings
+### 4. Vehicle Order Management
+Validates stock availability before an order can be confirmed. Batch Apex processes pending orders when stock is available and updates the remaining vehicle stock.
 
-See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm).
+### 5. Test Drive Reminder
+A record-triggered Flow with a scheduled path sends an email reminder one day before a scheduled test drive.
 
-## Get Started
+### 6. Service Request Management
+When a service request is submitted, a Flow retrieves the associated vehicle and dealer and sends an email notification to the dealer. After confirmation, another Flow updates the request status to **In Progress**.
 
-Ready to start developing? The [Get Started with Salesforce DX](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_get_started_dx.htm) guide walks you through your first project, from creating a scratch org to creating a simple Apex class or LWC to deploying your code to a sandbox.
+### 7. Reports and Dashboard
+A vehicle stock report summarizes vehicle models, stock quantities, prices, statuses, and dealers. The dashboard provides a centralized view of inventory information.
 
-## Common Salesforce CLI Commands
+## Apex Components
+- **VehicleOrderTrigger:** Invokes the trigger handler before vehicle order records are inserted or updated.
+- **VehicleOrderTriggerHandler:** Validates stock availability for orders being confirmed.
+- **VehicleOrderBatch:** Processes pending orders, confirms eligible orders, and reduces stock quantities.
+- **VehicleOrderBatchScheduler:** Schedules the batch process when configured.
 
-Here are common CLI commands that you'll use the most:
+## Screenshots
+Add screenshots of the following:
+- Vehicle inventory records
+- Vehicle order confirmation and stock validation
+- Apex classes and trigger
+- Test drive reminder email
+- Service request notification email
+- Service request confirmation and status update
+- Vehicle stock report
+- WhatNext Vision Motors dashboard
 
-- `sf org login web`: Authorize an org
-- `sf org open`: Open your org in a browser
-- `sf org create scratch`: Create a scratch org
-- `sf project deploy start`: Deploy metadata to your org
-- `sf project retrieve start`: Retrieve metadata from your org
-- `sf template generate <artifact>`: Scaffold new components, such as Apex classes and triggers, LWC components, Lightning apps, and more
-- `sf apex <command>`: Run Apex tests, run anonymous Apex blocks, and view logs
-- `sf data <command>`: Work with test data
-- `sf alias <command>`: Manage org aliases
-- `sf config <command>`: Configure CLI settings
+Store screenshots in the `screenshots/` folder and insert them into this section using Markdown image links.
 
-## Use Agentforce Vibes to Build Lightning Apps
+## Project Documentation
+**Complete Documentation:** [View the Project Documentation PDF](docs/WhatNext_Vision_Motors_Documentation.pdf)
 
-Transform your ideas into custom Lightning apps that extend CRM workflows directly in Lightning Experience. Through natural conversations with Agentforce Vibes, implement custom objects and fields, complex business logic, and dynamic UI components. See [Build a Lightning App Using Agentforce Vibes](https://developer.salesforce.com/docs/platform/einstein-for-devs/guide/lexapp-overview.html).
+Make sure the PDF is uploaded to the `docs` folder using the same filename as the link above.
 
-## Additional Resources
-
-- [Agentforce Vibes Developer Guide](https://developer.salesforce.com/docs/platform/einstein-for-devs/guide/einstein-overview.html)
-- [Salesforce CLI Installation Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/)
-- [Salesforce CLI Plugin Development Guide](https://developer.salesforce.com/docs/platform/salesforce-cli-plugin/guide/conceptual-overview.html)
-- [Salesforce VS Code Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-
+## Conclusion
+WhatNext Vision Motors demonstrates the use of Salesforce CRM, Apex programming, and Flow Builder to manage vehicle inventory, automate order processing, schedule test drive reminders, and improve dealer communication and service request tracking.
